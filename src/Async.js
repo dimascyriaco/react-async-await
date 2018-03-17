@@ -77,6 +77,10 @@ class Async extends React.Component {
       case 1:
         return this.props.children(value);
       case 2:
+        if (this.props.catch) {
+          return this.props.catch(error);
+        }
+
         throw error;
       default:
         throw new Error("unknown status");

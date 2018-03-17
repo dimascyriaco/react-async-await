@@ -20,7 +20,8 @@
     "test": "jest -ci",
     "build": "rollup -c",
     "precommit": "lint-staged",
-    "prepublishOnly": "yarn build && yarn test"
+    "prepublishOnly": "yarn build && yarn test",
+    "testDev": "yarn build && yarn test"
   },
   "lint-staged": {
     "*.{js,json,md}": ["prettier --write", "git add"],
