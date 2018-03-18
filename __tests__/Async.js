@@ -79,6 +79,8 @@ test("catches error in error boundary when no catch prop is present", done => {
 });
 
 test("receives the error on the catch prop function", done => {
+  expect.assertions(2);
+
   const error = new Error("test");
 
   mount(
@@ -86,10 +88,16 @@ test("receives the error on the catch prop function", done => {
       await={Promise.reject(error)}
       catch={caught => {
         expect(caught).toEqual(error);
-        done();
+        return caught;
       }}
     >
-      {value => null}
+      {value => {
+        if (value) {
+          expect(value).toEqual(error);
+          done();
+        }
+        return null;
+      }}
     </Async>
   );
 });

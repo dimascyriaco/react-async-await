@@ -78,7 +78,7 @@ class Async extends React.Component {
         return this.props.children(value);
       case 2:
         if (this.props.catch) {
-          return this.props.catch(error);
+          return this.props.children(this.props.catch(error));
         }
 
         throw error;
